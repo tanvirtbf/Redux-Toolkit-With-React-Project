@@ -10,4 +10,5 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer,
   },
+  middleware: []
 });
