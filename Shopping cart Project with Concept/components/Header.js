@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
-import { useSelector } from '../react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateAllProducts } from '../store/slices/productsSlice'
+import {productsList} from '../store/productsList'
 
 export default function Header() {
+  const dispatch = useDispatch();
   useEffect(()=>{
-    
+    dispatch(updateAllProducts(productsList))
   },[])
   const cartItems = useSelector((state) => state.cartItems)
   return (
