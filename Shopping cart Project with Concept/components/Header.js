@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartIcon from "../assets/cart-icon.svg";
 import { productsList } from "../store/productsList";
-import { updateAllProducts } from "../store/slices/productsSlice";
+import { fetchProducts, fetchProductsError, updateAllProducts } from "../store/slices/productsSlice";
 
 export default function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(fetchProducts())
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
         dispatch(updateAllProducts(data));
-      });
+      }).catch(()=>{
+        dispatch(fetchProductsError())
+      })
   }, []);
   const cartItems = useSelector((state) => state.cartItems);
   return (
