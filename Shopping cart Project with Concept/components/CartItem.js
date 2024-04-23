@@ -35,7 +35,7 @@ export default function CartItem({
         </button>
         <button
           onClick={() => {
-            dispatch(removeCartItem(productId))
+            dispatch(removeCartItem({productId}))
           }}
         >
           Remove
