@@ -31,7 +31,7 @@ export function increaseCartItemQuantity(productId) {
 }
 
 // Reducer
-export default function cartReducer(originalState = [], action) {
+export function cartReducer(originalState = [], action) {
   return produce(originalState, (state) => {
     const existingItemIndex = state.findIndex(
       (cartItem) => cartItem.productId === action.payload.productId
@@ -65,7 +65,7 @@ const findItemIndex = (state, action) =>   state.findIndex(
   (cartItem) => cartItem.productId === action.payload.productId
 );
 
-createSlice({
+const slice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
@@ -94,3 +94,6 @@ createSlice({
     },
   },
 });
+
+console.log(slice)
+export default slice.reducer
