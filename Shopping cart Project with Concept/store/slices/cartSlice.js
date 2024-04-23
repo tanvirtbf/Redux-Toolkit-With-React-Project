@@ -72,5 +72,17 @@ createSlice({
         state.push({ ...action.payload, quantity: 1 });
       }
     },
+    removeItem(state, action){
+      state.splice(existingItemIndex, 1);
+    },
+    increaseItemQuantity(state, action){
+      state[existingItemIndex].quantity += 1;
+    },
+    decreaseItemQuantity(state, action){
+      state[existingItemIndex].quantity -= 1;
+      if (state[existingItemIndex].quantity === 0) {
+        state.splice(existingItemIndex, 1);
+      }
+    },
   },
 });
