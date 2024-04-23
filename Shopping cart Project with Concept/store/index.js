@@ -3,16 +3,23 @@ import cartReducer from "./slices/cartSlice";
 import productsReducer from "./slices/productsSlice";
 import wishListReducer from "./slices/wishListSlice";
 
-function logger(store) {
-  return function (next) {
-    return function (action) {
-      console.log('store : ', store);
-      console.log('next : ', next);
-      console.log('action : ', action);
-      next(action)
-    };
-  };
-}
+// function logger(store) {
+//   return function (next) {
+//     return function (action) {
+//       console.log('store : ', store);
+//       console.log('next : ', next);
+//       console.log('action : ', action);
+//       next(action)
+//     };
+//   };
+// }
+
+const logger = (store) => (next) => (action) => {
+  console.log("store : ", store);
+  console.log("next : ", next);
+  console.log("action : ", action);
+  next(action);
+};
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +27,5 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer,
   },
-  middleware: () => new Tuple(logger)
+  middleware: () => new Tuple(logger),
 });
