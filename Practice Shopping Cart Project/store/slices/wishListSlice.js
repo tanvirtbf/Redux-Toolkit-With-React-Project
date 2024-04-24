@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit"
+
 // Action Types
 const WISHLIST_ADD_ITEM = 'wishList/addItem'
 const WISHLIST_REMOVE_ITEM = 'wishList/removeItem'
@@ -24,3 +26,19 @@ export default function wishListReducer(state = [], action) {
       return state
   }
 }
+
+// const existingItemIndex = (state, action) => state.findIndex((item) => item.productId === action.payload.productId)
+
+// const slice = createSlice({
+//   name: 'wishlist',
+//   initialState: [],
+//   reducers: {
+//     addWishListItem(state, action){
+//       const existingItemIndex = existingItemIndex(state, action)
+//       if(existingItemIndex !== -1)
+//     },
+//     removeWishListItem(state, action){
+
+//     }
+//   }
+// })
