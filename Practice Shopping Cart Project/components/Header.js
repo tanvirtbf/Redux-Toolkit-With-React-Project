@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductError, fetchProductLoading, updateAllProducts } from '../store/slices/productsSlice'
+import { fetchCartError, fetchCartItem, fetchCartLoading } from '../store/slices/cartSlice'
 
 export default function Header() {
   const dispatch = useDispatch()
@@ -16,9 +17,18 @@ export default function Header() {
       }).catch(() => {
         dispatch(fetchProductError('Something went wrong!'))
       })
+
+    dispatch(fetchCartLoading())
+    fetch('https://fakestoreapi.com/carts/5')
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(fetchCartItem(data.products))
+      }).catch(() => {
+        dispatch(fetchCartError('Something Wrong!!!'))
+      })
   },[])
 
-  const cartItems = useSelector((state) => state.cartItems)
+  const cartItems = useSelector((state) => state.cartItems.list)
   return (
     <header>
       <div className="header-contents">

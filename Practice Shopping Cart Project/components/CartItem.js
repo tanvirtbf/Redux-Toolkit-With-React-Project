@@ -12,7 +12,7 @@ export default function CartItem({
   rating,
   price,
   imageUrl,
-  quantity,
+  quantity
 }) {
   const dispatch = useDispatch()
   return (
