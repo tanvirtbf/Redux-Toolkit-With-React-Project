@@ -11,7 +11,7 @@ export default function Cart() {
   })
   const isLoading = useSelector((state)=> state.cartItems.loading)
   console.log(isLoading)
-  return ( isLoading ? <h1>Loading..</h1> :
+  return ( 
     <div className="cart-container">
       <h2>Items in Your Cart</h2>
       <div className="cart-items-container">
@@ -21,7 +21,7 @@ export default function Cart() {
           <div className="quantity">Quantity</div>
           <div className="total">Total</div>
         </div>
-        {cartItems.map(
+        {isLoading ? <h1 style={{textAlign: 'center'}}>Loading..</h1> :cartItems.map(
           ({ id, title, rating, price, image, quantity }) => (
             <CartItem
               key={id}
