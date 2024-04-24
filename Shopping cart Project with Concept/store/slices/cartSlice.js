@@ -47,6 +47,7 @@ const slice = createSlice({
 });
 
 export const {
+  fetchCartItems,
   loadCartItems,
   addCartItem,
   removeCartItem,

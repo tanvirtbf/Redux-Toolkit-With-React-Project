@@ -11,7 +11,7 @@ export default function Cart() {
   })
   const isLoading = useSelector((state)=> state.cartItems.loading)
   console.log(isLoading)
-  return (
+  return ( isLoading ? <h1>Loading..</h1> :
     <div className="cart-container">
       <h2>Items in Your Cart</h2>
       <div className="cart-items-container">

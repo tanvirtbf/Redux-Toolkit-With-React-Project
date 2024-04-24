@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartIcon from "../assets/cart-icon.svg";
-import { loadCartItems } from "../store/slices/cartSlice";
+import { fetchCartItems, loadCartItems } from "../store/slices/cartSlice";
 import {
   fetchProducts,
   fetchProductsError,
@@ -22,6 +22,7 @@ export default function Header() {
         dispatch(fetchProductsError("Somethis Wrong..."));
       });
 
+    dispatch(fetchCartItems())
     fetch("https://fakestoreapi.com/carts/5")
       .then((res) => res.json())
       .then((data) => {
