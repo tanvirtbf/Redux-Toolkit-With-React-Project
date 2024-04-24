@@ -10,5 +10,5 @@ export const store = configureStore({
     cartItems: cartReducer,
     wishList: wishListReducer,
   },
-  middleware: () => new Tuple(logger),
+  // middleware: () => new Tuple(logger),
 });

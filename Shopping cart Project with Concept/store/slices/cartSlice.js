@@ -9,6 +9,9 @@ const slice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
+    loadCartItems(state, action){
+      return action.payload.products
+    },
     addCartItem(state, action) {
       const existingItemIndex = findItemIndex(state, action);
       if (existingItemIndex !== -1) {
@@ -36,6 +39,7 @@ const slice = createSlice({
 });
 
 export const {
+  loadCartItems,
   addCartItem,
   removeCartItem,
   increaseCartItemQuantity,

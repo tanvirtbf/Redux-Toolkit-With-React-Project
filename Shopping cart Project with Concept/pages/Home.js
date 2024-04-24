@@ -8,7 +8,7 @@ export default function Home() {
   const error = useSelector((state) => state.products.error);
   return isLoading ? (
     <h1 style={{textAlign:'center'}}>Loading...</h1>
-  ) : error ||  (
+  ) : error? <h2 style={{textAlign:'center'}}>{error}</h2> :  (
     <div className="products-container">
       {productsList.map(({ id, title, rating, price, image }) => (
         <Product
