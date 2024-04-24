@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartIcon from "../assets/cart-icon.svg";
-import { fetchCartItems, loadCartItems } from "../store/slices/cartSlice";
+import { fetchCartItems, fetchCartItemsError, loadCartItems } from "../store/slices/cartSlice";
 import {
   fetchProducts,
   fetchProductsError,
@@ -19,17 +19,17 @@ export default function Header() {
         dispatch(updateAllProducts(data));
       })
       .catch(() => {
-        dispatch(fetchProductsError("Somethis Wrong..."));
+        dispatch(fetchProductsError("Something Wrong!!"));
       });
 
     dispatch(fetchCartItems())
-    fetch("https://fakestoreapi.com/carts/5")
+    fetch("https://fakestoreapi.com/cart5s/5")
       .then((res) => res.json())
       .then((data) => {
         dispatch(loadCartItems(data));
       })
       .catch(() => {
-        // dispatch(fetchProductsError("Somethis Wrong..."));
+        dispatch(fetchCartItemsError("Somethis Wrong..."));
       });
   }, []);
   const cartItems = useSelector((state) => state.cartItems.list);

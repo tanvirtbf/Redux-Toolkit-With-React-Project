@@ -14,8 +14,8 @@ export default function Cart() {
       .filter(({ title }) => title);
   });
   const isLoading = useSelector((state) => state.cartItems.loading);
-  console.log(isLoading);
-  return (
+  const isError = useSelector((state)=> state.cartItems.error)
+  return (isError ? <h1>{isError}</h1> : 
     <div className="cart-container">
       <h2>Items in Your Cart</h2>
       <div className="cart-items-container">

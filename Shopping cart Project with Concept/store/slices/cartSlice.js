@@ -13,6 +13,9 @@ const slice = createSlice({
     error:'',
   },
   reducers: {
+    fetchCartItemsError(state, action){
+      state.error = action.payload || 'Something Went Wrong!!!'
+    },
     fetchCartItems(state){
       state.loading = true
     },
@@ -47,6 +50,7 @@ const slice = createSlice({
 });
 
 export const {
+  fetchCartItemsError,
   fetchCartItems,
   loadCartItems,
   addCartItem,
