@@ -13,7 +13,11 @@ const slice = createSlice({
     error:'',
   },
   reducers: {
+    fetchCartItems(state){
+      state.loading = true
+    },
     loadCartItems(state, action){
+      state.loading = false
       state.list =  action.payload.products
     },
     addCartItem(state, action) {

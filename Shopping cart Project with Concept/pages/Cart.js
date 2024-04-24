@@ -9,6 +9,8 @@ export default function Cart() {
       return {...cartProduct, quantity};
     }).filter(({title}) => title)
   })
+  const isLoading = useSelector((state)=> state.cartItems.loading)
+  console.log(isLoading)
   return (
     <div className="cart-container">
       <h2>Items in Your Cart</h2>
