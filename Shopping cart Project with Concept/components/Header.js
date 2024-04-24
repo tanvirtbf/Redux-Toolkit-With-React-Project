@@ -23,7 +23,7 @@ export default function Header() {
       });
 
     dispatch(fetchCartItems())
-    fetch("https://fakestoreapi.com/cart5s/5")
+    fetch("https://fakestoreapi.com/carts/5")
       .then((res) => res.json())
       .then((data) => {
         dispatch(loadCartItems(data));

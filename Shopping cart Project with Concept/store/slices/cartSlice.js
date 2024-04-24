@@ -15,6 +15,7 @@ const slice = createSlice({
   reducers: {
     fetchCartItemsError(state, action){
       state.error = action.payload || 'Something Went Wrong!!!'
+      state.loading = false
     },
     fetchCartItems(state){
       state.loading = true
