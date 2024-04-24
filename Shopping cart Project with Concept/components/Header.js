@@ -13,25 +13,24 @@ export default function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
-    setTimeout(()=>{
-      fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(updateAllProducts(data));
-      })
-      .catch(() => {
-        dispatch(fetchProductsError("Somethis Wrong..."));
-      });
-    },1000)
-
+    fetch("https://fakestoreapi.com/products")
+    .then((res) => res.json())
+    .then((data) => {
+    dispatch(updateAllProducts(data));
     fetch("https://fakestoreapi.com/carts/5")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(loadCartItems(data));
-      })
-      .catch(() => {
-        // dispatch(fetchProductsError("Somethis Wrong..."));
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch(loadCartItems(data));
+    })
+    .catch(() => {
+      // dispatch(fetchProductsError("Somethis Wrong..."));
+    });
+    })
+    .catch(() => {
+    dispatch(fetchProductsError("Somethis Wrong..."));
+    });
+
+
   }, []);
   const cartItems = useSelector((state) => state.cartItems);
   return (
