@@ -4,7 +4,7 @@ import CartItem from '../components/CartItem'
 
 export default function Cart() {
   const cartItems = useSelector(({products, cartItems}) => {
-    return cartItems.map(({productId, quantity}) => {
+    return cartItems.list.map(({productId, quantity}) => {
       const cartProduct = products.list.find((product) => product.id === productId)
       return {...cartProduct, quantity};
     }).filter(({title}) => title)

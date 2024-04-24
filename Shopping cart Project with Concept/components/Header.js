@@ -31,7 +31,7 @@ export default function Header() {
         // dispatch(fetchProductsError("Somethis Wrong..."));
       });
   }, []);
-  const cartItems = useSelector((state) => state.cartItems);
+  const cartItems = useSelector((state) => state.cartItems.list);
   return (
     <header>
       <div className="header-contents">
