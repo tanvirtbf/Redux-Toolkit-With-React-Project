@@ -7,7 +7,11 @@ const findItemIndex = (state, action) =>
 
 const slice = createSlice({
   name: "cart",
-  initialState: [],
+  initialState: {
+    loading: false,
+    list:[],
+    error:'',
+  },
   reducers: {
     loadCartItems(state, action){
       return action.payload.products
