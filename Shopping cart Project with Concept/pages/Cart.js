@@ -1,13 +1,13 @@
 import React from 'react'
-import CartItem from '../components/CartItem'
 import { useSelector } from 'react-redux'
+import CartItem from '../components/CartItem'
 
 export default function Cart() {
   const cartItems = useSelector(({products, cartItems}) => {
     return cartItems.map(({productId, quantity}) => {
       const cartProduct = products.list.find((product) => product.id === productId)
       return {...cartProduct, quantity};
-    })
+    }).filter(({title}) => title)
   })
   return (
     <div className="cart-container">

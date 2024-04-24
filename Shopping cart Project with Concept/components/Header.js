@@ -13,7 +13,8 @@ export default function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
-    fetch("https://fakestoreapi.com/products")
+    setTimeout(()=>{
+      fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
         dispatch(updateAllProducts(data));
@@ -21,6 +22,8 @@ export default function Header() {
       .catch(() => {
         dispatch(fetchProductsError("Somethis Wrong..."));
       });
+    },1000)
+
     fetch("https://fakestoreapi.com/carts/5")
       .then((res) => res.json())
       .then((data) => {
