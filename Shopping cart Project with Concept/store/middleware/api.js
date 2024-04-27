@@ -1,12 +1,11 @@
 export const apiMiddleware = (store) => (next) => (action) => {
   console.log(store)
   const baseUrl = "https://fakestoreapi.com";
-  if (action.type === "api/makeCall") {
+  if (action.type === "api/productsApiCall") {
     next(action)
     const { url, onSuccess, onLoading, onError } = action.payload;
     store.dispatch({
       type: onLoading,
-      payload: true,
     })
     fetch(`${baseUrl}/${url}`)
       .then((res) => res.json())

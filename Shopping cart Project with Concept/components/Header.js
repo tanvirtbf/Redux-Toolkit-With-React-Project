@@ -14,13 +14,23 @@ export default function Header() {
   useEffect(() => {
 
     dispatch({
-      type: 'api/makeCall',
+      type: 'api/productsApiCall',
       payload: {
         url:'products',
         onSuccess: updateAllProducts.type,
         onLoading: fetchProducts.type,
         onError: fetchProductsError.type,
       },
+    })
+
+    dispatch({
+      type: 'api/productsApiCall',
+      payload: {
+        url: 'carts/5',
+        onSuccess: loadCartItems.type,
+        onLoading: fetchCartItems.type,
+        onError: fetchCartItemsError.type,
+      }
     })
 
     // dispatch(fetchProducts());
