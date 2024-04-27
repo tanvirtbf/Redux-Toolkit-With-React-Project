@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const findItemIndex = (state, action) =>
   state.findIndex(
@@ -9,20 +9,20 @@ const slice = createSlice({
   name: "cart",
   initialState: {
     loading: false,
-    list:[],
-    error:'',
+    list: [],
+    error: "",
   },
   reducers: {
-    fetchCartItemsError(state, action){
-      state.error = action.payload || 'Something Went Wrong!!!'
-      state.loading = false
+    fetchCartItemsError(state, action) {
+      state.error = action.payload || "Something Went Wrong!!!";
+      state.loading = false;
     },
-    fetchCartItems(state){
-      state.loading = true
+    fetchCartItems(state) {
+      state.loading = true;
     },
-    loadCartItems(state, action){
-      state.loading = false
-      state.list =  action.payload.products
+    loadCartItems(state, action) {
+      state.loading = false;
+      state.list = action.payload.products;
     },
     addCartItem(state, action) {
       const existingItemIndex = findItemIndex(state.list, action);
@@ -59,5 +59,20 @@ export const {
   increaseCartItemQuantity,
   decreaseCartItemQuantity,
 } = slice.actions;
+
+const getCartItems = ({ products, cartItems }) => {
+  return cartItems.list
+    .map(({ productId, quantity }) => {
+      const cartProduct = products.list.find(
+        (product) => product.id === productId
+      );
+      return { ...cartProduct, quantity };
+    })
+    .filter(({ title }) => title);
+};
+
+export const getAllCartItems = createSelector(getCartItems, (state) => state)
+export const getCartLoadingState = (state) => state.cartItems.loading;
+export const getCartErrorState = (state) => state.cartItems.error;
 
 export default slice.reducer;
