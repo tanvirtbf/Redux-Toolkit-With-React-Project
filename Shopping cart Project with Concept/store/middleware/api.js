@@ -1,7 +1,7 @@
 export const apiMiddleware = (store) => (next) => (action) => {
   console.log(store)
   const baseUrl = "https://fakestoreapi.com";
-  if (action.type === "api/productsApiCall") {
+  if (action.type === "api/makeCall") {
     next(action)
     const { url, onSuccess, onLoading, onError } = action.payload;
     store.dispatch({
@@ -26,13 +26,4 @@ export const apiMiddleware = (store) => (next) => (action) => {
   }
 };
 
-// export function apiMiddleware(store) {
-//   return function (next) {
-//     return function (action) {
-//       console.log('store : ', store);
-//       console.log('next : ', next);
-//       console.log('action : ', action);
-//       next(action)
-//     };
-//   };
-// }
+export const fetchData = (payload) => ({type: 'api/makeCall', payload})
