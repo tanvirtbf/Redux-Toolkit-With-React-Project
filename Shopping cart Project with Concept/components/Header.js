@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartIcon from "../assets/cart-icon.svg";
-import { fetchCartItems, fetchCartItemsError, loadCartItems } from "../store/slices/cartSlice";
+import {
+  fetchCartItems,
+  fetchCartItemsError,
+  loadCartItems,
+} from "../store/slices/cartSlice";
 import {
   fetchProducts,
   fetchProductsError,
@@ -12,26 +16,24 @@ import {
 export default function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
-
     dispatch({
-      type: 'api/productsApiCall',
+      type: "api/productsApiCall",
       payload: {
-        url:'products',
+        url: "products",
         onSuccess: updateAllProducts.type,
         onLoading: fetchProducts.type,
         onError: fetchProductsError.type,
       },
-    })
-
+    });
     dispatch({
-      type: 'api/productsApiCall',
+      type: "api/productsApiCall",
       payload: {
-        url: 'carts/5',
+        url: "carts/5",
         onSuccess: loadCartItems.type,
         onLoading: fetchCartItems.type,
         onError: fetchCartItemsError.type,
-      }
-    })
+      },
+    });
 
     // dispatch(fetchProducts());
     // fetch("https://fakestoreapi.com/products")
